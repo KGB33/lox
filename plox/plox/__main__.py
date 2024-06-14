@@ -1,7 +1,7 @@
 import sys
 from enum import IntEnum
 
-from Scanner import Scanner
+from plox.Scanner import Scanner
 
 
 class ReturnValue(IntEnum):
