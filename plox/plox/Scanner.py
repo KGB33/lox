@@ -92,7 +92,7 @@ class Scanner:
             return False
         if self.src[self.current] != c:
             return False
-        self.current = +1
+        self.current += 1
         return True
 
     def peek(self) -> str:

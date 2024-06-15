@@ -31,3 +31,15 @@ def test_scanner_parses_strings():
     ]
     actual = Scanner(src).scanTokens()
     assert expected == actual
+
+
+def test_scanner_parses_double_equals():
+    src = "15 == 10"
+    expected = [
+        Token(TokenType.NUMBER, "15", 15, 0),
+        Token(TokenType.EQUAL_EQUAL, "==", None, 0),
+        Token(TokenType.NUMBER, "10", 10, 0),
+        Token(TokenType.EOF, "", None, 0),
+    ]
+    actual = Scanner(src).scanTokens()
+    assert expected == actual

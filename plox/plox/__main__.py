@@ -1,17 +1,9 @@
 import sys
-from enum import IntEnum
 
+from plox import errors
 from plox.Scanner import Scanner
-
-
-class ReturnValue(IntEnum):
-    Ok = 0
-    UsageError = 1
-    ParsingError = 10
-    RuntimeError = 20
-
-
-errors: list[str] = []
+from plox.Parser import Parser
+from plox.Ast import AstPrinter
 
 
 def runRepl():
@@ -27,12 +19,15 @@ def runFile(file: str):
 
 
 def _run(src: str):
-    for t in Scanner(src).scanTokens():
-        print(t)
+    tokens = Scanner(src).scanTokens()
+    print(f"Tokens parsed: {tokens}")
+    expressions = Parser(tokens).parse()
 
-
-def addError(line: int, msg: str):
-    errors.append(f"[l: {line}] Error: {msg}")
+    if errors:
+        return print(errors)
+    if expressions is not None:
+        return print(AstPrinter().display(expressions))
+    print("Somehow, there were no errors, and no expressions were parsed.")
 
 
 if __name__ == "__main__":
@@ -43,3 +38,5 @@ if __name__ == "__main__":
             runFile(f)
         case _:
             print("Usage: `plox [script]`")
+    for e in errors:
+        print(e)
