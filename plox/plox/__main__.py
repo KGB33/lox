@@ -3,7 +3,9 @@ import sys
 from plox import errors
 from plox.Scanner import Scanner
 from plox.Parser import Parser
-from plox.Ast import AstPrinter
+from plox.Interpreter import Interpreter
+
+interpreter = Interpreter()
 
 
 def runRepl():
@@ -26,7 +28,7 @@ def _run(src: str):
     if errors:
         return print(errors)
     if expressions is not None:
-        return print(AstPrinter().display(expressions))
+        interpreter.interpret(expressions)
     print("Somehow, there were no errors, and no expressions were parsed.")
 
 
