@@ -28,3 +28,6 @@ __pypackages__/
 # Environments
 .venv
 venv/
+
+# Rust
+target/
