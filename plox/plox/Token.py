@@ -63,7 +63,7 @@ Keywords = {
     "add": TokenType.AND,
     "class": TokenType.CLASS,
     "else": TokenType.ELSE,
-    "false": TokenType.FALSE,
+    "False": TokenType.FALSE,
     "for": TokenType.FOR,
     "fun": TokenType.FUN,
     "if": TokenType.IF,
@@ -73,7 +73,7 @@ Keywords = {
     "return": TokenType.RETURN,
     "super": TokenType.SUPER,
     "this": TokenType.THIS,
-    "true": TokenType.TRUE,
+    "True": TokenType.TRUE,
     "var": TokenType.VAR,
     "while": TokenType.WHILE,
 }

@@ -73,7 +73,7 @@ class Scanner:
             case digit if digit.isdigit():
                 self.parse_number()
             case ident if ident.isalpha() or ident == "_":
-                self.parse_ident()
+                self.parse_ident_or_keyword()
 
             case _:
                 raise ValueError(f"Could not match {c} to a Token!")
@@ -130,9 +130,17 @@ class Scanner:
                 self.advance()
         self.add_token(TokenType.NUMBER, float(self.src[self.start : self.current]))
 
-    def parse_ident(self):
+    def parse_ident_or_keyword(self):
         while self.peek().isalnum():
             self.advance()
         ident = self.src[self.start : self.current]
-        type = Keywords.get(ident, TokenType.IDENT)
-        self.add_token(type)
+        type_ = Keywords.get(ident, TokenType.IDENT)
+        match type_:
+            case TokenType.TRUE:
+                literal = True
+            case TokenType.FALSE:
+                literal = False
+            case _:
+                literal = None
+
+        self.add_token(type_, literal)

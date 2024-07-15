@@ -43,3 +43,13 @@ def test_scanner_parses_double_equals():
     ]
     actual = Scanner(src).scanTokens()
     assert expected == actual
+
+
+def test_scanner_parsed_booleans():
+    src = "True"
+    expected = [
+        Token(TokenType.TRUE, "True", True, 0),
+        Token(TokenType.EOF, "", None, 0),
+    ]
+    actual = Scanner(src).scanTokens()
+    assert expected == actual
