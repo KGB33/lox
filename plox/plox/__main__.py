@@ -24,12 +24,12 @@ def _run(src: str):
     tokens = Scanner(src).scanTokens()
     print(f"Tokens parsed: {tokens}")
     expressions = Parser(tokens).parse()
+    print(expressions)
 
     if errors:
         return print(errors)
     if expressions is not None:
         interpreter.interpret(expressions)
-    print("Somehow, there were no errors, and no expressions were parsed.")
 
 
 if __name__ == "__main__":

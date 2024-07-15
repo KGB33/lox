@@ -22,6 +22,13 @@ def test_math_expression():
     assert actual == expected
 
 
+@pytest.mark.parametrize("stmt,expected", [("True", True), ("False", False)])
+def test_bool_keywords_are_parsed(stmt, expected):
+    tokens = Scanner(stmt).scanTokens()
+    expressions = Parser(tokens).parse()
+    assert expressions == Literal(value=expected)
+
+
 @pytest.mark.xfail
 def test_variable_assignment():
     src = "var foo = 10 + 15"
